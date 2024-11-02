@@ -156,8 +156,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   avatarImage: {
-    width: 300, // Set width for the image
-    height: 300, // Set height for the image
+    width: 700, // Set width for the image
+    height: 700, // Set height for the image
     // borderRadius: 25, // Optional: make the image circular
   },
   verticalDivider: {
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
   },
   heatmapContainer: {
     marginTop: 20,
-    alignItems: 'flex-start', // Align items to the left
+    alignItems: 'center', // Align items to the left
   },
   calendar: {
     flexDirection: 'row',
