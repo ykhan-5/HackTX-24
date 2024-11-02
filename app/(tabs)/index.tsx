@@ -1,70 +1,136 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, Image, Button } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
+const LayoutPage = () => {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      {/* Header with Username and Daily Score */}
+      <View style={styles.header}>
+        <Text style={styles.username}>Username</Text>
+        <View style={styles.dailyScore}>
+          <Text style={styles.scoreText}>90</Text>
+        </View>
+      </View>
+
+      {/* Avatar and Health Bars */}
+      <View style={styles.avatarSection}>
+        <View style={styles.avatar}>
+          {/* Placeholder for Avatar */}
+          <Text style={styles.avatarText}>👤</Text>
+        </View>
+
+        {/* Health Bars */}
+        <View style={styles.healthBars}>
+          <View style={styles.healthBar}>
+            <Text>❤️</Text>
+            <View style={styles.bar}>
+              <View style={styles.filledBar} />
+            </View>
+          </View>
+
+          <View style={styles.healthBar}>
+            <Text>🍏</Text>
+            <View style={styles.bar}>
+              <View style={styles.filledBar} />
+            </View>
+          </View>
+        </View>
+      </View>
+
+      {/* Weekly Score Section */}
+      <View style={styles.weeklyScore}>
+        <View style={styles.scoreGrid}>
+          {/* Placeholder for Weekly Score Grid */}
+          <Text>Weekly Score: 20</Text>
+        </View>
+      </View>
+
+      {/* Bottom Navigation */}
+      <View style={styles.navigation}>
+        <Button title="Home" onPress={() => {}} />
+        <Button title="Camera" onPress={() => {}} />
+      </View>
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#fff',
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between', // Aligns children (username and daily score) with space in between
+    alignItems: 'center', // Centers items vertically
+    marginBottom: 20,
+  },
+  username: {
+    fontSize: 59,
+    fontWeight: 'bold',
+  },
+  dailyScore: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: '#f0f0f0',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  scoreText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  avatarSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  avatar: {
+    alignItems: 'center',
+    fontSize: 30,
+  },
+  avatarText: {
+    fontSize: 50,
+  },
+  healthBars: {
+    flex: 1,
+  },
+  healthBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    marginBottom: 10,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  bar: {
+    flex: 1,
+    height: 10,
+    backgroundColor: '#ddd',
+    borderRadius: 5,
+    marginLeft: 10,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  filledBar: {
+    width: '50%',
+    height: '100%',
+    backgroundColor: '#ff6347',
+    borderRadius: 5,
+  },
+  weeklyScore: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  scoreGrid: {
+    width: '90%',
+    height: 60,
+    backgroundColor: '#f0f0f0',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  navigation: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 });
+
+export default LayoutPage;
