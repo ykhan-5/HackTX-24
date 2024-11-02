@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('GlasstownNbpRegular-RyMM.ttf') format('truetype');
+}
+
+.header {
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.div1 {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.div2 {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.text {
+    color: black;
+    font-size: 18px;
+}

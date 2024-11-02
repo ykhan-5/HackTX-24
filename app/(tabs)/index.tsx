@@ -43,7 +43,7 @@ const LayoutPage = () => {
     <View style={styles.container}>
       {/* Header with Username and Daily Score */}
       <View style={styles.header}>
-        <Text style={styles.username}>Braxton Bourne</Text>
+        <Text style={styles.username}>Username</Text>
         <View style={styles.dailyScore}>
           <Text style={styles.scoreText}>GO</Text>
         </View>
@@ -93,8 +93,8 @@ const LayoutPage = () => {
             </View>
           ))}
           {/* Extra box for weekly score */}
-          <View style={styles.box}>
-            <Text style={styles.dayText}>Weekly Score</Text>
+          <View style={styles.weekBox}>
+            <Text style={styles.weekText}>Weekly Score</Text>
             <Text style={styles.scoreText}>{weeklyScore}</Text>
           </View>
         </View>
@@ -115,36 +115,35 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: '#18215d',
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 1,
   },
   username: {
-    fontSize: 59,
+    fontSize: 50,
     fontWeight: 'bold',
+    color: '#589ffc',
+    fontFamily: 'Glasstown',
   },
   dailyScore: {
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#e17cb7',
     justifyContent: 'center',
     alignItems: 'center',
+    borderColor: '#589ffc',
+    borderWidth: 2,
   },
   scoreText: {
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: 'bold',
-    alignItems: 'flex-start'
-  },
-  dateText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'left', // Align to the left or center as per your layout
-    marginVertical: 10, // Space above and below
+    color: '#18215d',
+    alignItems: 'center',
   },
   avatarSection: {
     flexDirection: 'row',
@@ -210,8 +209,32 @@ const styles = StyleSheet.create({
   dayText: {
     fontSize: 12,
     fontWeight: 'bold',
-    alignItems: 'center'
+    alignItems: 'center',
+    color: '#589ffc',
   },
+  weekText: {
+    fontSize: 9,
+    fontWeight: 'bold',
+    alignItems: 'center',
+    color: '#589ffc',
+  },
+  weekBox: {
+    width: 60,  // Increased width
+    height: 60, // Increased height
+    margin: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    backgroundColor: '#ffe3ae',
+  },
+  dateText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'left', // Align to the left or center as per your layout
+    color: '#589ffc',
+  }
 });
 
 export default LayoutPage;
