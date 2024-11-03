@@ -66,10 +66,13 @@ const Capture = () => {
 
   return (
     <div>
-      <Navbar />
-      <div className="flex justify-between p-5">
+      <div>
+        <Navbar />
+      </div>
+      <div className="main-content flex justify-between p-5">
+
         {/* Left Column: Old Scores */}
-        <div className="flex-1 p-3 border border-gray-300 mr-3">
+        <div className="left-column flex-1 p-3 border border-gray-300 mr-3">
           <h3 className="text-lg font-semibold mb-3">Old Scores</h3>
           <ul className="space-y-2">
             <li>Score 1: 85</li>
@@ -79,7 +82,7 @@ const Capture = () => {
         </div>
 
         {/* Middle Column: Image Upload */}
-        <div className="flex-1 p-3 border border-gray-300 mx-3">
+        <div className="middle-column flex-1 p-3 border border-gray-300 mx-3">
           <h3 className="text-lg font-semibold mb-3">Upload Image</h3>
           <input
             type="file"
@@ -97,7 +100,7 @@ const Capture = () => {
         </div>
 
         {/* Right Column: Vitals */}
-        <div className="flex-1 p-3 border border-gray-300 ml-3">
+        <div className="right-column flex-1 p-3 border border-gray-300 ml-3">
           <h3 className="text-lg font-semibold mb-3">Current Vitals</h3>
           <ul className="space-y-2">
             <li>Current Score: 92</li>
@@ -111,8 +114,9 @@ const Capture = () => {
             </li>
           </ul>
         </div>
+
       </div>
-    </div >
+    </div>
   );
 };
 
