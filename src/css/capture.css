@@ -1,3 +1,24 @@
+:root {
+    --fnt-main: 'CustomFont', sans-serif;
+  
+    /* GRAPE SODA ARCADE PALETTE */
+    --dark-purple-background: #18215d; /* for background */
+    --purple: #503197;
+    --magenta: #bf53c9;
+    --pink: #e17cb7;
+    --peach: #efaaa5;
+    --cream: #f6e0c8;
+  
+    /* AX CORAL-32 COLOR PALETTE */
+    --violet: #988dd8;
+    --light-blue: #589ffc;
+    --light-yellow: #ffe3ae;
+  }
+  body {
+    background-color: var(--dark-purple-background);
+    font-family: var(--fnt-main); /* Optional: Use your custom font */
+    color: white; /* Optional: Adjust the text color for readability */
+}
 .justify-between {
     justify-content: space-between;
 }
