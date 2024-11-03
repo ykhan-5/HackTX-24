@@ -30,6 +30,7 @@ const Navbar = () => {
         <Link to="/capture" onClick={() => setIsOpen(false)}>
           Capture
         </Link>
+<<<<<<< HEAD
         {userLoggedIn ? (
           <Link to="/login" onClick={() => { handleLogout(); setIsOpen(false); }}>
             Logout
@@ -39,6 +40,11 @@ const Navbar = () => {
             Login
           </Link>
         )}
+=======
+        <Link to="/login" onClick={() => setIsOpen(false)}>
+          Logout
+        </Link>
+>>>>>>> 61129ee12e77ea8f051912f2d94b440057fa37b7
       </div>
 
       <div className="navbar-toggle" onClick={toggleMenu}>

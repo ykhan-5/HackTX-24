@@ -17,6 +17,7 @@ const Home = () => {
                 </div>
                 <div className="right-side">
                     <HealthBar />
+                    <HealthBar />
                 </div>
             </div>
             <div>

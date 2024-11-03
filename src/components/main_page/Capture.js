@@ -2,9 +2,11 @@
 import React, { useState } from "react";
 import { useAuth } from "../../contexts/authContext";
 import heart from "../../assets/heart.png";
-import OpenAI from "openai";
+import { Link } from "react-router-dom";
 import "../../css/capture.css";
+import "../../css/navbar.css";
 import Navbar from "./Navbar";
+import OpenAI from "openai";
 
 const Capture = () => {
   const [analysisResult, setAnalysisResult] = useState(null);
@@ -38,7 +40,7 @@ const Capture = () => {
             content: [
               {
                 type: "text",
-                text: "Analyze the following image of food and assess its healthiness...",
+                text: "Analyze the following image of food and assess its healthiness in relation to heart health. Provide a category ranking of 'Bad', 'Neutral', or 'Good', and assign a score between -5 to 10 based on the following criteria: Bad: score of -5 through -1 Neutral: score of 1 through 5 Good: score of 6 through 10 Format the response as follows: Category: score, Also warn me about any possible allergens in the food. GIve the score in a simple format as shown before, and then give a list of allergens, no extra explanations",
               },
               {
                 type: "image_url",
@@ -110,7 +112,7 @@ const Capture = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
