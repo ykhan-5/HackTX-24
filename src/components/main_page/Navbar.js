@@ -24,8 +24,8 @@ const Navbar = () => {
         <Link to="#services" onClick={() => setIsOpen(false)}>
           Services
         </Link>
-        <Link to="#contact" onClick={() => setIsOpen(false)}>
-          Contact
+        <Link to="/login" onClick={() => setIsOpen(false)}>
+          Logout
         </Link>
       </div>
 

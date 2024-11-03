@@ -8,7 +8,7 @@
   --fnt-main: 'CustomFont', sans-serif;
 
   /* GRAPE SODA ARCADE PALETTE */
-  --dark-purple: #18215d; /* for background */
+  --dark-purple-background: #18215d; /* for background */
   --purple: #503197;
   --magenta: #bf53c9;
   --pink: #e17cb7;
@@ -19,6 +19,22 @@
   --violet: #988dd8;
   --light-blue: #589ffc;
   --light-yellow: #ffe3ae;
+}
+
+.navbar {
+    position: fixed;
+    background: linear-gradient(135deg, var(--purple), var(--magenta));
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    width: 100%;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    height: 3rem;
+    border-bottom: 1px solid;
+    border-color: var(--cream);
+    align-items: center;
 }
 
 .fnt-main {
