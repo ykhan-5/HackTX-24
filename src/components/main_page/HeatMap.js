@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../../App.css';
 
 export default function HeatMap() {
   // Sample data for demonstration, use your actual data logic

@@ -46,55 +46,11 @@ color: white;
 color: #61dafb;
 }
 
-.heatmapContainer {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-.calendar {
-  display: flex;
-  flex-wrap: wrap;
-  width: 300px; /* Adjust width as needed */
-}
-
-.box {
-  width: 60px;
-  height: 60px;
-  margin: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.dayText {
-  font-size: 12px;
-  font-weight: bold;
-  color: #589ffc;
-}
-
-.scoreText {
-  font-size: 14px;
-  font-weight: bold;
-  color: #18215d;
-}
-
-.weekBox {
-  width: 60px;
-  height: 60px;
-  margin: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #ffe3ae;
-}
-
-.weekText {
-  font-size: 10px;
-  font-weight: bold;
-  color: #589ffc;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
