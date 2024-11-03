@@ -13,12 +13,96 @@
     --violet: #988dd8;
     --light-blue: #589ffc;
     --light-yellow: #ffe3ae;
-  }
-  body {
+}
+
+body {
     background-color: var(--dark-purple-background);
     font-family: var(--fnt-main); /* Optional: Use your custom font */
     color: white; /* Optional: Adjust the text color for readability */
 }
+
+/* Main content layout */
+.main-content {
+    display: flex;
+    margin: 40px auto;
+    max-width: 1200px;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.left-column,
+.right-column {
+    flex: 1;
+    max-width: 250px;
+}
+
+.middle-column {
+    flex: 2;
+    max-width: 500px;
+}
+
+.left-column,
+.middle-column,
+.right-column {
+    padding: 20px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Center content within columns */
+.left-column,
+.middle-column,
+.right-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* List styling */
+ul {
+    width: 100%;
+    padding: 0;
+    list-style: none;
+}
+
+.space-y-2 > * + * {
+    margin-top: 0.75rem;
+}
+
+/* File input container */
+.middle-column input[type="file"] {
+    width: 80%;
+    margin: 20px auto;
+}
+
+/* Analysis results */
+.mt-3 {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 968px) {
+    .main-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left-column,
+    .middle-column,
+    .right-column {
+        width: 90%;
+        max-width: 500px;
+        margin: 10px 0;
+    }
+}
+
+/* Utility classes */
 .justify-between {
     justify-content: space-between;
 }
@@ -27,7 +111,6 @@
     padding: 1.25rem;
 }
 
-/* Column common styles */
 .flex-1 {
     flex: 1 1 0%;
 }
@@ -44,7 +127,6 @@
     border-color: #d1d5db;
 }
 
-/* Column spacing */
 .mr-3 {
     margin-right: 0.75rem;
 }
@@ -58,7 +140,6 @@
     margin-left: 0.75rem;
 }
 
-/* Headings */
 .text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
@@ -72,12 +153,10 @@
     margin-bottom: 0.75rem;
 }
 
-/* Lists */
-.space-y-2>*+* {
+.space-y-2 > * + * {
     margin-top: 0.5rem;
 }
 
-/* File input styles */
 .block {
     display: block;
 }
@@ -111,7 +190,6 @@ input[type="file"]::file-selector-button:hover {
     background-color: #dbeafe;
 }
 
-/* Loading and results */
 .mt-2 {
     margin-top: 0.5rem;
 }
@@ -120,7 +198,6 @@ input[type="file"]::file-selector-button:hover {
     margin-top: 0.75rem;
 }
 
-/* Image styles */
 .w-6 {
     width: 1.5rem;
 }
@@ -129,36 +206,9 @@ input[type="file"]::file-selector-button:hover {
     margin-right: 0.5rem;
 }
 
-/* Flex alignment for heart icon */
 .flex.items-center {
     display: flex;
     align-items: center;
-}
-
-/* Main content layout */
-.main-content {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px;
-}
-
-.left-column, .middle-column, .right-column {
-    flex: 1;
-    padding: 3px;
-    border: 1px solid #ccc;
-}
-
-.left-column {
-    margin-right: 3px;
-}
-
-.middle-column {
-    margin-left: 3px;
-    margin-right: 3px;
-}
-
-.right-column {
-    margin-left: 3px;
 }
 
 /* Navbar styles */
@@ -167,7 +217,7 @@ input[type="file"]::file-selector-button:hover {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #18215d;
+    background-color: var(--dark-purple-background);
     color: white;
 }
 
