@@ -1,5 +1,4 @@
-// src/components/main_page/Capture.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../../contexts/authContext";
 import heart from "../../assets/heart.png";
 import { Link } from "react-router-dom";
@@ -7,11 +6,46 @@ import "../../css/capture.css";
 import "../../css/navbar.css";
 import Navbar from "./Navbar";
 import OpenAI from "openai";
+import { db } from "../../firebase/firebase.js";
+import { getAuth } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 const Capture = () => {
   const [analysisResult, setAnalysisResult] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [healthData, setHealthData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const auth = getAuth(); // Get authentication instance
+  const user = auth.currentUser; // Get the current user
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (user) {
+        const userDocRef = doc(db, "users", user.uid); // Reference to the user's document
+        try {
+          const userDoc = await getDoc(userDocRef); // Fetch the document
+
+          if (userDoc.exists()) {
+            setHealthData(userDoc.data()); // Set health data to state
+          } else {
+            console.log("No such document!");
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+          setError("Failed to fetch health data.");
+        }
+      } else {
+        console.log("No user is signed in.");
+      }
+      setLoading(false); // Set loading to false at the end
+    };
+
+    fetchData();
+  }, [user]); // Depend on user so it runs when user changes
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
@@ -40,7 +74,7 @@ const Capture = () => {
             content: [
               {
                 type: "text",
-                text: "Analyze the following image of food and assess its healthiness in relation to heart health. Provide a category ranking of 'Bad', 'Neutral', or 'Good', and assign a score between -5 to 10 based on the following criteria: Bad: score of -5 through -1 Neutral: score of 1 through 5 Good: score of 6 through 10 Format the response as follows: Category: score, Also warn me about any possible allergens in the food. GIve the score in a simple format as shown before, and then give a list of allergens, no extra explanations",
+                text: "Analyze the following image of food and assess its healthiness in relation to heart health. Provide a category ranking of 'Bad', 'Neutral', or 'Good', and assign a score between -5 to 10 based on the following criteria: Bad: score of -5 through -1 Neutral: score of 1 through 5 Good: score of 6 through 10 Format the response as follows: Category: score, Also warn me about any possible allergens in the food. Give the score in a simple format as shown before, and then give a list of allergens, no extra explanations",
               },
               {
                 type: "image_url",
@@ -66,11 +100,8 @@ const Capture = () => {
 
   return (
     <div>
-      <div>
-        <Navbar />
-      </div>
+      <Navbar />
       <div className="main-content flex justify-between p-5">
-
         {/* Left Column: Old Scores */}
         <div className="left-column flex-1 p-3 border border-gray-300 mr-3">
           <h3 className="text-lg font-semibold mb-3">Old Scores</h3>
@@ -94,7 +125,9 @@ const Capture = () => {
           {error && <p className="mt-2 text-red-600">{error}</p>}
           {analysisResult && (
             <div className="mt-3">
-              <p className="text-green-600">Analysis Result: {analysisResult}</p>
+              <p className="text-green-600">
+                Analysis Result: {analysisResult}
+              </p>
             </div>
           )}
         </div>
@@ -103,18 +136,28 @@ const Capture = () => {
         <div className="right-column flex-1 p-3 border border-gray-300 ml-3">
           <h3 className="text-lg font-semibold mb-3">Current Vitals</h3>
           <ul className="space-y-2">
-            <li>Current Score: 92</li>
-            <li className="flex items-center">
-              <img src={heart} className="w-6 mr-2" alt="heart" />
-              45 / 50
+            <li>
+              Current Score:{" "}
+              {(healthData.GutHealthScore + healthData.HeartHealthScore) / 2}
             </li>
             <li className="flex items-center">
               <img src={heart} className="w-6 mr-2" alt="heart" />
-              23 / 50
+              {healthData ? (
+                healthData.GutHealthScore
+              ) : (
+                <p>No health data found.</p>
+              )}
+            </li>
+            <li className="flex items-center">
+              <img src={heart} className="w-6 mr-2" alt="heart" />
+              {healthData ? (
+                healthData.HeartHealthScore
+              ) : (
+                <p>No health data found.</p>
+              )}
             </li>
           </ul>
         </div>
-
       </div>
     </div>
   );
