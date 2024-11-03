@@ -1,3 +1,9 @@
+/* Ensure all text inside Capture component has white font */
+.capture-page {
+    color: white;
+}
+
+/* Other styles */
 .justify-between {
     justify-content: space-between;
 }
@@ -71,7 +77,8 @@
 }
 
 .text-gray-500 {
-    color: #6b7280;
+    color: #d1d5db;
+    /* Adjust if needed */
 }
 
 /* File input button styles */
@@ -90,7 +97,6 @@ input[type="file"]::file-selector-button:hover {
     background-color: #dbeafe;
 }
 
-/* Loading and results */
 .mt-2 {
     margin-top: 0.5rem;
 }
@@ -99,7 +105,6 @@ input[type="file"]::file-selector-button:hover {
     margin-top: 0.75rem;
 }
 
-/* Image styles */
 .w-6 {
     width: 1.5rem;
 }
@@ -116,12 +121,15 @@ input[type="file"]::file-selector-button:hover {
 
 /* Main content layout */
 .main-content {
+    margin-top: 40px;
     display: flex;
     justify-content: space-between;
     padding: 5px;
 }
 
-.left-column, .middle-column, .right-column {
+.left-column,
+.middle-column,
+.right-column {
     flex: 1;
     padding: 3px;
     border: 1px solid #ccc;

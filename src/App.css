@@ -8,7 +8,8 @@
   --fnt-main: 'CustomFont', sans-serif;
 
   /* GRAPE SODA ARCADE PALETTE */
-  --dark-purple-background: #18215d; /* for background */
+  --dark-purple-background: #18215d;
+  /* for background */
   --purple: #503197;
   --magenta: #bf53c9;
   --pink: #e17cb7;
@@ -21,76 +22,60 @@
   --light-yellow: #ffe3ae;
 }
 
-.navbar {
-    position: fixed;
-    background: linear-gradient(135deg, var(--purple), var(--magenta));
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    width: 100%;
-    z-index: 20;
-    top: 0;
-    left: 0;
-    height: 3rem;
-    border-bottom: 1px solid;
-    border-color: var(--cream);
-    align-items: center;
+/* Apply background color to entire viewport */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #18215d;
+  /* Set your desired background color */
+  overflow-x: hidden;
+  /* Prevent horizontal scrolling */
+  font-family: var(--fnt-main);
 }
 
+/* Navbar styling */
+.navbar {
+  position: fixed;
+  background: linear-gradient(135deg, var(--purple), var(--magenta));
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  width: 100%;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  height: 3rem;
+  border-bottom: 1px solid;
+  border-color: var(--cream);
+  align-items: center;
+}
+
+/* Main font */
 .fnt-main {
   font-family: var(--fnt-main);
 }
 
+/* Main application container */
 .app {
   text-align: center;
   background-color: #18215d;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-}
-
-.app-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .app-logo {
-      animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.app-header {
-  background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.app-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-      transform: rotate(0deg);
-  }
-  to {
-      transform: rotate(360deg);
-  }
 }
 
 /* Main content layout */
 .main-content {
   display: flex;
   flex: 1;
+  background-color: #18215d;
+  /* Ensure main content also has the same background color */
 }
 
-.left-side, .right-side {
+.left-side,
+.right-side {
   flex: 1;
   padding: 20px;
 }
@@ -106,11 +91,19 @@
   align-items: center;
 }
 
+/* Bottom container that should fill remaining space with background color */
+.bottom-container {
+  background-color: #18215d;
+  /* Same color to fill entire area */
+  padding: 20px;
+}
+
+/* heat-map-content */
 .heat-map-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 /* heatmapContainer */
@@ -118,23 +111,23 @@
   margin-top: 20px;
   display: flex;
   flex-direction: row;
-  align-items: center; /* Align items to the center vertically */
-  flex-wrap: nowrap; /* Prevent wrapping */
-  overflow-x: auto; /* Add horizontal scroll if needed */
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
 /* calendar */
 .calendar {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap; /* Prevent wrapping */
-  width: auto; /* Adjust width to fit the layout */
+  flex-wrap: nowrap;
+  width: auto;
 }
 
 /* box */
 .box {
-  width: 60px;  /* Increased width */
-  height: 60px; /* Increased height */
+  width: 60px;
+  height: 60px;
   margin: 5px;
   display: flex;
   justify-content: center;
@@ -164,17 +157,17 @@
 }
 
 .score-text {
-    font-size: 20px;
-    justify-content: center;
-    align-items: center;
-    height: 6%;
-    color:#18215d;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 6%;
+  color: #18215d;
 }
 
 /* weekBox */
 .week-box {
-  width: 60px;  /* Increased width */
-  height: 60px; /* Increased height */
+  width: 60px;
+  height: 60px;
   margin: 5px;
   display: flex;
   justify-content: center;
@@ -188,7 +181,7 @@
 .date-text {
   font-size: 20px;
   font-weight: bold;
-  text-align: left; /* Align to the left or center as per your layout */
+  text-align: left;
   color: var(--light-blue);
 }
 
@@ -197,6 +190,7 @@
   display: flex;
 }
 
+/* Health bar styling */
 .health-bar {
   width: 100%;
   height: 30px;
@@ -208,6 +202,6 @@
 
 .health-bar-fill {
   height: 100%;
-  background-color: red; /* You can change this to any color or gradient */
+  background-color: red;
   transition: width 0.3s ease-in-out;
 }

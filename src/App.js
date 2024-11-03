@@ -2,7 +2,7 @@
 import React from "react";
 import { AuthProvider } from "./contexts/authContext";
 import { useRoutes } from "react-router-dom";
-
+import Header from "./components/header"
 import Login from "./components/auth/login";
 import Register from "./components/auth/register";
 import Home from "./components/main_page"; // Home page with main components
@@ -20,6 +20,7 @@ function App() {
   const routesElement = useRoutes(routesArray);
   return (
     <AuthProvider>
+      <Header />
       <div className="w-full h-screen flex flex-col">{routesElement}</div>
     </AuthProvider>
   );
