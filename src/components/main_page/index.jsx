@@ -14,7 +14,7 @@ const Home = () => {
             <Navbar />
             <div className="main-content">
                 <div className="left-side">
-                    <Avatar /> 
+                    <Avatar />
                 </div>
                 <div className="right-side">
                     <HealthBar />
@@ -22,7 +22,6 @@ const Home = () => {
             </div>
             <div>
                 <HeatMap />
-                <Capture />
             </div>
             {/* <div className='text-2xl font-bold pt-18'>Hello {currentUser.displayName ? currentUser.displayName : currentUser.email}, you are now logged in.</div> */}
         </div>

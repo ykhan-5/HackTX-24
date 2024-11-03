@@ -1,5 +1,6 @@
-// Navbar.js
+// src/components/main_page/Navbar.js
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../../css/navbar.css";
 
 const Navbar = () => {
@@ -14,15 +15,18 @@ const Navbar = () => {
       <div className="navbar-logo">HealthHero</div>
 
       <div className={`navbar-links ${isOpen ? "open" : ""}`}>
-        <a href="#home" onClick={() => setIsOpen(false)}>
-          Login
-        </a>
-        <a href="#capture" onClick={() => setIsOpen(false)}>
+        <Link to="/home" onClick={() => setIsOpen(false)}>
           Home
-        </a>
-        <a href="#services" onClick={() => setIsOpen(false)}>
+        </Link>
+        <Link to="/capture" onClick={() => setIsOpen(false)}>
           Capture
-        </a>
+        </Link>
+        <Link to="#services" onClick={() => setIsOpen(false)}>
+          Services
+        </Link>
+        <Link to="#contact" onClick={() => setIsOpen(false)}>
+          Contact
+        </Link>
       </div>
 
       <div className="navbar-toggle" onClick={toggleMenu}>
