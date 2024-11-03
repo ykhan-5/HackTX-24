@@ -5,7 +5,6 @@ import { useRoutes } from "react-router-dom";
 
 import Login from "./components/auth/login";
 import Register from "./components/auth/register";
-import Header from "./components/header";
 import Home from "./components/main_page"; // Home page with main components
 import Capture from "./components/main_page/Capture"; // Separate Capture page
 
@@ -21,7 +20,6 @@ function App() {
   const routesElement = useRoutes(routesArray);
   return (
     <AuthProvider>
-      <Header />
       <div className="w-full h-screen flex flex-col">{routesElement}</div>
     </AuthProvider>
   );

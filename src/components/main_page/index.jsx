@@ -5,7 +5,6 @@ import Navbar from "./Navbar";
 import Avatar from "./Avatar";
 import HealthBar from "./Healthbar";
 import HeatMap from "./HeatMap";
-import Capture from "./Capture";
 
 const Home = () => {
     const { currentUser } = useAuth();
