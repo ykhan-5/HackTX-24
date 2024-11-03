@@ -73,8 +73,14 @@ const Capture = () => {
           };
 
       // Update health scores
-      const updatedGutScore = currentData.GutHealthScore + score;
-      const updatedHeartScore = currentData.HeartHealthScore + score;
+      const updatedGutScore = Math.min(
+        100,
+        Math.max(0, currentData.GutHealthScore + score)
+      );
+      const updatedHeartScore = Math.min(
+        100,
+        Math.max(0, currentData.HeartHealthScore + score)
+      );
 
       // Calculate total health score
       const updatedTotalScore = (updatedGutScore + updatedHeartScore) / 2;
