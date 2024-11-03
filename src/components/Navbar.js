@@ -2,11 +2,16 @@
 import React, { useState } from "react";
 import "../css/navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ setCurrentPage }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleNavClick = (page) => {
+    setCurrentPage(page);
+    setIsOpen(false); // Close the menu after clicking
   };
 
   return (
@@ -14,16 +19,16 @@ const Navbar = () => {
       <div className="navbar-logo">HealthHero</div>
 
       <div className={`navbar-links ${isOpen ? "open" : ""}`}>
-        <a href="#home" onClick={() => setIsOpen(false)}>
+        <a href="#home" onClick={() => handleNavClick("home")}>
           Home
         </a>
-        <a href="#capture" onClick={() => setIsOpen(false)}>
+        <a href="#capture" onClick={() => handleNavClick("capture")}>
           Capture
         </a>
-        <a href="#services" onClick={() => setIsOpen(false)}>
+        <a href="#services" onClick={() => handleNavClick("services")}>
           Services
         </a>
-        <a href="#contact" onClick={() => setIsOpen(false)}>
+        <a href="#contact" onClick={() => handleNavClick("contact")}>
           Contact
         </a>
       </div>
