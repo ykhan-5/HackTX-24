@@ -113,3 +113,83 @@ input[type="file"]::file-selector-button:hover {
     display: flex;
     align-items: center;
 }
+
+/* Main content layout */
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.left-column, .middle-column, .right-column {
+    flex: 1;
+    padding: 3px;
+    border: 1px solid #ccc;
+}
+
+.left-column {
+    margin-right: 3px;
+}
+
+.middle-column {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.right-column {
+    margin-left: 3px;
+}
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #18215d;
+    color: white;
+}
+
+.navbar-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 15px;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.navbar-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+}
+
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .navbar-links.open {
+        display: flex;
+    }
+
+    .navbar-toggle {
+        display: flex;
+    }
+}
