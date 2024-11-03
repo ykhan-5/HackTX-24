@@ -8,6 +8,7 @@
     background-color: #18215d;
     /* Dark background color from palette */
     color: #f6e0c8;
+    font-family: var(--fnt-main);
 }
 
 .login-container {
@@ -24,13 +25,13 @@
 }
 
 .login-title {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 700;
     color: #f6e0c8;
     /* Light cream text color */
     margin-bottom: 1.5rem;
-    font-family: 'Press Start 2P', sans-serif;
     /* Retro arcade font */
+    font-family: var(--fnt-main);
     text-shadow: 0 0 5px #bf53c9, 0 0 10px #bf53c9;
 }
 
