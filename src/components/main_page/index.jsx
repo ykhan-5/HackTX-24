@@ -13,9 +13,7 @@ const Home = () => {
             <Navbar />
             <Avatar />
             <HeatMap />
-            <Capture />
         </div>
-        // <div className='text-2xl font-bold pt-18'>Hello {currentUser.displayName ? currentUser.displayName : currentUser.email}, you are now logged in.</div>
     )
 }
 

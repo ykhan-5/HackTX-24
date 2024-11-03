@@ -1,48 +1,41 @@
-// Navbar.js
+// src/components/main_page/Navbar.js
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../../css/navbar.css";
 
-const Navbar = ({ setCurrentPage }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleNavClick = (page) => {
-    setCurrentPage(page);
-    setIsOpen(false); // Close the menu after clicking
-  };
-
   return (
-    <>
-      <nav className="navbar">
-        <div className="navbar-logo">HealthHero</div>
+    <nav className="navbar">
+      <div className="navbar-logo">HealthHero</div>
 
-        <div className={`navbar-links ${isOpen ? "open" : ""}`}>
-          <a href="#home" onClick={() => handleNavClick("home")}>
-            Home
-          </a>
-          <a href="#capture" onClick={() => handleNavClick("capture")}>
-            Capture
-          </a>
-          <a href="#services" onClick={() => handleNavClick("services")}>
-            Services
-          </a>
-          <a href="#contact" onClick={() => handleNavClick("contact")}>
-            Contact
-          </a>
-        </div>
+      <div className={`navbar-links ${isOpen ? "open" : ""}`}>
+        <Link to="/home" onClick={() => setIsOpen(false)}>
+          Home
+        </Link>
+        <Link to="/capture" onClick={() => setIsOpen(false)}>
+          Capture
+        </Link>
+        <Link to="#services" onClick={() => setIsOpen(false)}>
+          Services
+        </Link>
+        <Link to="#contact" onClick={() => setIsOpen(false)}>
+          Contact
+        </Link>
+      </div>
 
-        <div className="navbar-toggle" onClick={toggleMenu}>
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
-        </div>
-      </nav>
-    </>
+      <div className="navbar-toggle" onClick={toggleMenu}>
+        <span className="bar"></span>
+        <span className="bar"></span>
+        <span className="bar"></span>
+      </div>
+    </nav>
   );
-
 };
 
 export default Navbar;
