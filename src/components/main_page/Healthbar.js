@@ -1,9 +1,12 @@
 import React from 'react';
+import '../../App.css';
 
-export default function Healthbar() {
+const HealthBar = ({ health }) => {
   return (
     <div className="health-bar">
-      <div className="health-bar-fill" style={{ width: '70%' }}></div>
+      <div className="health-bar-fill" style={{ width: `${health}%` }}></div>
     </div>
   );
-}
+};
+
+export default HealthBar;
