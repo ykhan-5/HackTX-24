@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import heart from "../assets/heart.png";
 import "../css/capture.css";
+import OpenAI from "openai";
 
 const Capture = () => {
   const [analysisResult, setAnalysisResult] = useState(null);
@@ -22,43 +23,36 @@ const Capture = () => {
         reader.readAsDataURL(file);
       });
 
-      // Make the API call directly to OpenAI
-      const response = await fetch("https://api.openai.com/v1/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: "gpt-4-vision-preview",
-          messages: [
-            {
-              role: "user",
-              content: [
-                {
-                  type: "text",
-                  text: "Analyze the following image of food and assess its healthiness in relation to heart health. Provide a category ranking of 'Bad', 'Neutral', or 'Good', and assign a score between -5 to 10 based on the following criteria: Bad: score of -5 through -1 Neutral: score of 1 through 5 Good: score of 6 through 10 Format the response as follows: Category: score",
-                },
-                {
-                  type: "image_url",
-                  image_url: {
-                    url: `data:image/jpeg;base64,${base64Image}`,
-                  },
-                },
-              ],
-            },
-          ],
-          max_tokens: 300,
-        }),
+      // Initialize OpenAI client
+      const client = new OpenAI({
+        apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+        dangerouslyAllowBrowser: true,
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      const response = await client.chat.completions.create({
+        model: "gpt-4o-mini",
+        messages: [
+          {
+            role: "user",
+            content: [
+              {
+                type: "text",
+                text: "Analyze the following image of food and assess its healthiness in relation to heart health. Provide a category ranking of 'Bad', 'Neutral', or 'Good', and assign a score between -5 to 10 based on the following criteria: Bad: score of -5 through -1 Neutral: score of 1 through 5 Good: score of 6 through 10 Format the response as follows: Category: score",
+              },
+              {
+                type: "image_url",
+                image_url: {
+                  url: `data:image/jpeg;base64,${base64Image}`,
+                },
+              },
+            ],
+          },
+        ],
+        max_tokens: 300,
+      });
 
-      const data = await response.json();
-      console.log("Analysis Result:", data.choices[0].message.content);
-      setAnalysisResult(data.choices[0].message.content);
+      console.log("Analysis Result:", response.choices[0].message.content);
+      setAnalysisResult(response.choices[0].message.content);
     } catch (error) {
       console.error("Error analyzing image:", error);
       setError("Failed to analyze image. Please try again.");
