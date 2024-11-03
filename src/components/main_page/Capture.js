@@ -185,7 +185,7 @@ const Capture = () => {
       <Navbar />
       <div className="main-content flex justify-between p-5">
         {/* Left Column: Old Scores */}
-        <div className="left-column flex-1 p-3 border border-gray-300 mr-3">
+        <div className="capture-content-1">
           <h3 className="text-lg font-semibold mb-3">Previous Scores</h3>
           <ul className="space-y-2">
             {healthData?.LastGenerated?.slice(-5).map((score, index) => (
@@ -197,7 +197,7 @@ const Capture = () => {
         </div>
 
         {/* Middle Column: Image Upload */}
-        <div className="middle-column flex-1 p-3 border border-gray-300 mx-3">
+        <div className="capture-content-2">
           <h3 className="text-lg font-semibold mb-3">Upload Image</h3>
           <input
             type="file"
@@ -220,7 +220,7 @@ const Capture = () => {
         </div>
 
         {/* Right Column: Vitals */}
-        <div className="right-column flex-1 p-3 border border-gray-300 ml-3">
+        <div className="capture-content-3">
           <h3 className="text-lg font-semibold mb-3">Current Vitals</h3>
           <ul className="space-y-2">
             <li>

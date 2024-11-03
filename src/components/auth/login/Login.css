@@ -61,7 +61,7 @@
     border-radius: 4px;
     font-size: 1rem;
     background-color: #18215d;
-    color: #f6e0c8;
+    color: var(--light-yellow-2);
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 

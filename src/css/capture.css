@@ -23,13 +23,42 @@ body {
 }
 
 /* Main content layout */
-.main-content {
+/* .main-content {
   display: flex;
   justify-content: center;
   padding: 5px;
+} */
+ 
+
+.capture-content-1,
+.capture-content-2,
+.capture-content-3 {
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--light-yellow);
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid linear-gradient(135deg, var(--purple), var(--magenta));
+  box-shadow: 0 0 20px var(--magenta), 0 0 40px var(--pink);
 }
 
-.left-column,
+.capture-content-1 {
+  margin-right: 0.75rem;
+  /* Neon-inspired gradient */
+}
+
+.capture-content-2 {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+}
+
+.capture-content-3 {
+  margin-left: 0.75rem;
+}
+
+/* .left-column,
 .right-column {
   flex: 1;
   max-width: 250px;
@@ -48,17 +77,17 @@ body {
   border-radius: 8px;
   background-color: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
+} */
 
 /* Center content within columns */
-.left-column,
+/* .left-column,
 .middle-column,
 .right-column {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-}
+} */
 
 /* List styling */
 ul {
