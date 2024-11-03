@@ -14,8 +14,8 @@
     width: 100%;
     max-width: 400px;
     padding: 2rem;
-    background: #18215d;
-    /* Background matching theme */
+    background: linear-gradient(135deg, #503197, #bf53c9);
+    /* Neon-inspired gradient */
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(80, 49, 151, 0.5), 0 0 40px rgba(191, 83, 201, 0.3);
     /* Neon glow */
@@ -26,8 +26,8 @@
 .login-title {
     font-size: 2rem;
     font-weight: 700;
-    color: #bf53c9;
-    /* Neon magenta color */
+    color: #f6e0c8;
+    /* Light cream text color */
     margin-bottom: 1.5rem;
     font-family: 'Press Start 2P', sans-serif;
     /* Retro arcade font */
@@ -149,18 +149,20 @@
 .sign-up-link {
     margin-top: 1rem;
     font-size: 0.9rem;
-    color: #efaaa5;
+    color: #f6e0c8;
+    /* Light cream color for softer appearance */
 }
 
 .sign-up-link a {
-    color: #bf53c9;
+    color: #e17cb7;
+    /* Softer pink for a light, inviting look */
     font-weight: bold;
     text-decoration: underline;
     transition: color 0.3s, text-shadow 0.3s;
 }
 
 .sign-up-link a:hover {
-    color: #e17cb7;
-    /* Hover effect to soft pink */
-    text-shadow: 0 0 5px #e17cb7, 0 0 10px #e17cb7;
+    color: #bf53c9;
+    /* Neon magenta on hover */
+    text-shadow: 0 0 5px #bf53c9, 0 0 10px #bf53c9;
 }
