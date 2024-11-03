@@ -1,19 +1,50 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./assets/fonts/PixelifySans.ttf') format('truetype');
 }
 
-.App-logo {
+/* Colour Palette */
+:root {
+  --fnt-main: 'CustomFont', sans-serif;
+
+  /* GRAPE SODA ARCADE PALETTE */
+  --dark-purple: #18215d; /* for background */
+  --purple: #503197;
+  --magenta: #bf53c9;
+  --pink: #e17cb7;
+  --peach: #efaaa5;
+  --cream: #f6e0c8;
+
+  /* AX CORAL-32 COLOR PALETTE */
+  --violet: #988dd8;
+  --light-blue: #589ffc;
+  --light-yellow: #ffe3ae;
+}
+
+.fnt-main {
+  font-family: var(--fnt-main);
+}
+
+.app {
+  text-align: center;
+  background-color: #18215d;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .app-logo {
+      animation: App-logo-spin infinite 20s linear;
   }
 }
 
-.App-header {
+.app-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -24,15 +55,143 @@
   color: white;
 }
 
-.App-link {
+.app-link {
   color: #61dafb;
 }
 
 @keyframes App-logo-spin {
   from {
-    transform: rotate(0deg);
+      transform: rotate(0deg);
   }
   to {
-    transform: rotate(360deg);
+      transform: rotate(360deg);
   }
+}
+
+/* Main content layout */
+.main-content {
+  display: flex;
+  flex: 1;
+}
+
+.left-side, .right-side {
+  flex: 1;
+  padding: 20px;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+}
+
+.right-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heat-map-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+/* heatmapContainer */
+.heatmap-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Align items to the center vertically */
+  flex-wrap: nowrap; /* Prevent wrapping */
+  overflow-x: auto; /* Add horizontal scroll if needed */
+}
+
+/* calendar */
+.calendar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; /* Prevent wrapping */
+  width: auto; /* Adjust width to fit the layout */
+}
+
+/* box */
+.box {
+  width: 60px;  /* Increased width */
+  height: 60px; /* Increased height */
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* dayText */
+.day-text {
+  font-size: 12px;
+  height: 80%;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  color: var(--light-blue);
+}
+
+/* weekText */
+.week-text {
+  font-size: 9px;
+  height: 80%;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  color: var(--light-blue);
+}
+
+.score-text {
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 6%;
+    color:#18215d;
+}
+
+/* weekBox */
+.week-box {
+  width: 60px;  /* Increased width */
+  height: 60px; /* Increased height */
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: var(--light-yellow);
+}
+
+/* dateText */
+.date-text {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left; /* Align to the left or center as per your layout */
+  color: var(--light-blue);
+}
+
+.avatar {
+  align-items: left;
+  display: flex;
+}
+
+.health-bar {
+  width: 100%;
+  height: 30px;
+  background: url('./assets/images/healthbar.png') no-repeat;
+  background-size: contain;
+  border: 2px solid #f2ebeb;
+  display: flex;
+}
+
+.health-bar-fill {
+  height: 100%;
+  background-color: red; /* You can change this to any color or gradient */
+  transition: width 0.3s ease-in-out;
 }
