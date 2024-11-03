@@ -82,27 +82,20 @@
 /* Main content layout */
 .main-content {
   display: flex;
-  flex: 1;
+  flex: 1; /* Allows the main content to grow and take up space */
   margin-top: 3rem;
-  flex: 1 1 auto; /* Allow it to grow and shrink */
   overflow: auto; /* Enable scrolling if necessary */
 }
 
-.left-side, .right-side {
-  flex: 1 1 auto; /* Allow it to grow and shrink */
-  flex: 1;
-  padding: 20px;
-  flex-direction: row;
-}
-
 .left-side {
-
+  flex: 1; /* Each side takes equal space */
   display: flex;
   flex-direction: column;
+  padding: 20px;
 }
 
 .right-side {
-
+  flex: 1; /* Each side takes equal space */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -305,4 +298,3 @@ html, body {
   font-size: 16px; /* Adjust font size */
   color: #fff; /* Change color for visibility */
 }
-

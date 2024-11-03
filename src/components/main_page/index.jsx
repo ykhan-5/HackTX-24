@@ -7,7 +7,6 @@ import HealthBar from "./Healthbar"; // Ensure this is the correct import
 import GutBar from "./GutBar"; // Ensure this is the correct import
 import HeatMap from "./HeatMap";
 import UserEmail from './UserEmail';
-import BodyBatteryPlot from './ScatterPlot'
 import AverageScoreIcon from "./AverageScoreIcon"; // Import the AverageScoreIcon component
 
 const Home = () => {
@@ -21,10 +20,6 @@ const Home = () => {
                 </div>
                 <div className="right-side">
                     <UserEmail email={currentUser ? currentUser.email : ''} /> {/* Use UserEmail component */}
-                    <h1>Weekly History</h1>
-                    <div style={{ border: '1px solid #ccc', padding: '20px' }}>
-                    <BodyBatteryPlot />
-                    </div>
                     <HealthBar />
                     <GutBar />
                     <AverageScoreIcon/>
