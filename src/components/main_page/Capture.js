@@ -74,7 +74,7 @@ const Capture = () => {
             content: [
               {
                 type: "text",
-                text: "Analyze the following image of food and assess its healthiness in relation to heart health. Provide a category ranking of 'Bad', 'Neutral', or 'Good', and assign a score between -5 to 10 based on the following criteria: Bad: score of -5 through -1 Neutral: score of 1 through 5 Good: score of 6 through 10 Format the response as follows: Category: score, Also warn me about any possible allergens in the food. Give the score in a simple format as shown before, and then give a list of allergens, no extra explanations",
+                text: "Analyze the image of food and assess its healthiness for heart health. Provide a category ranking of 'Bad', 'Neutral', or 'Good' with a score of -5 to 10: Bad (-5 to -1), Neutral (1 to 5), Good (6 to 10). Format as 'Category: score'. List allergens separated by * or respond with 'Not a Food' if it is not food.",
               },
               {
                 type: "image_url",
