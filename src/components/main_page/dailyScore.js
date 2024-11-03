@@ -1,8 +1,8 @@
 // src/StatusDashboard.js
 import React from 'react';
 import HealthBar from '/Healthbar.js';
-import GutBar from '/GutBar.js'; 
-import AverageScoreIcon from '/AverageScoreIcon.js'; 
+import GutBar from '/GutBar.js';
+import AverageScoreIcon from '/AverageScoreIcon.js';
 
 const StatusDashboard = () => {
     const health = 89;  // Example health value

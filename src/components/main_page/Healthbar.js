@@ -24,7 +24,7 @@ const HealthBar = ({ health = 89 }) => {
             <FontAwesomeIcon icon={faHeart} style={{ marginRight: '20px', color: '#ff4747', fontSize: '30px' }} />
             <div
                 className="health-fill"
-                style={{ 
+                style={{
                     width: `${(health / maxHealth) * 100}%`,
                     background: backgroundColor, // Apply dynamic background color
                     height: '24px' // Set a fixed height for the health bar

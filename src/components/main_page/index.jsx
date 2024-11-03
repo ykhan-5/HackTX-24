@@ -22,8 +22,8 @@ const Home = () => {
                     <UserEmail email={currentUser ? currentUser.email : ''} /> {/* Use UserEmail component */}
                     <HealthBar />
                     <GutBar />
-                    <AverageScoreIcon/>
-                   
+                    <AverageScoreIcon />
+
                 </div>
             </div>
             <div>
