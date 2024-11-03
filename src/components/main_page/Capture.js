@@ -8,27 +8,41 @@ import Navbar from "./Navbar";
 import OpenAI from "openai";
 import { db } from "../../firebase/firebase.js";
 import { getAuth } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 
 const Capture = () => {
   const [analysisResult, setAnalysisResult] = useState(null);
   const [healthData, setHealthData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const auth = getAuth(); // Get authentication instance
-  const user = auth.currentUser; // Get the current user
+  const [healthBoost, setHealthBoost] = useState(null);
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   useEffect(() => {
     const fetchData = async () => {
       if (user) {
-        const userDocRef = doc(db, "users", user.uid); // Reference to the user's document
+        const userDocRef = doc(db, "users", user.uid);
         try {
-          const userDoc = await getDoc(userDocRef); // Fetch the document
+          const userDoc = await getDoc(userDocRef);
 
           if (userDoc.exists()) {
-            setHealthData(userDoc.data()); // Set health data to state
+            setHealthData(userDoc.data());
           } else {
-            console.log("No such document!");
+            const initialHealthData = {
+              GutHealthScore: 0,
+              HeartHealthScore: 0,
+              LastGenerated: [],
+              TotalHealthScore: 0,
+            };
+
+            try {
+              await setDoc(userDocRef, initialHealthData);
+              setHealthData(initialHealthData);
+            } catch (error) {
+              console.error("Error initializing health data:", error);
+              setError("Failed to initialize health data.");
+            }
           }
         } catch (error) {
           console.error("Error fetching user data:", error);
@@ -37,15 +51,66 @@ const Capture = () => {
       } else {
         console.log("No user is signed in.");
       }
-      setLoading(false); // Set loading to false at the end
+      setLoading(false);
     };
 
     fetchData();
-  }, [user]); // Depend on user so it runs when user changes
+  }, [user]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const updateHealthScores = async (score) => {
+    if (!user || score === null) return;
+
+    const userDocRef = doc(db, "users", user.uid);
+    try {
+      const userDoc = await getDoc(userDocRef);
+      const currentData = userDoc.exists()
+        ? userDoc.data()
+        : {
+            GutHealthScore: 0,
+            HeartHealthScore: 0,
+            LastGenerated: [],
+            TotalHealthScore: 0,
+          };
+
+      // Update health scores
+      const updatedGutScore = currentData.GutHealthScore + score;
+      const updatedHeartScore = currentData.HeartHealthScore + score;
+
+      // Calculate total health score
+      const updatedTotalScore = (updatedGutScore + updatedHeartScore) / 2;
+
+      // Get current LastGenerated array or initialize if it doesn't exist
+      const currentLastGenerated = currentData.LastGenerated || [];
+
+      // Add new score to LastGenerated array
+      const updatedLastGenerated = [...currentLastGenerated, score];
+
+      const updates = {
+        GutHealthScore: updatedGutScore,
+        HeartHealthScore: updatedHeartScore,
+        LastGenerated: updatedLastGenerated,
+        TotalHealthScore: updatedTotalScore,
+      };
+
+      await updateDoc(userDocRef, updates);
+      setHealthData(updates);
+      console.log("Health scores updated successfully");
+    } catch (error) {
+      console.error("Error updating health scores:", error);
+      setError("Failed to update health scores.");
+    }
+  };
+
+  const extractHealthScore = (analysisText) => {
+    if (analysisText === "Not a Food") return null;
+
+    // Find the number in the text using regex
+    const match = analysisText.match(/-?\d+/);
+    if (match) {
+      return parseInt(match[0]);
+    }
+    return null;
+  };
 
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
@@ -88,8 +153,19 @@ const Capture = () => {
         max_tokens: 300,
       });
 
-      console.log("Analysis Result:", response.choices[0].message.content);
-      setAnalysisResult(response.choices[0].message.content);
+      const analysisText = response.choices[0].message.content;
+      console.log("Analysis Result:", analysisText);
+      setAnalysisResult(analysisText);
+
+      // Extract and set the health boost score
+      const score = extractHealthScore(analysisText);
+      setHealthBoost(score);
+      console.log("Health Boost Score:", score);
+
+      // Update the health scores in the database
+      if (score !== null) {
+        await updateHealthScores(score);
+      }
     } catch (error) {
       console.error("Error analyzing image:", error);
       setError("Failed to analyze image. Please try again.");
@@ -104,11 +180,13 @@ const Capture = () => {
       <div className="main-content flex justify-between p-5">
         {/* Left Column: Old Scores */}
         <div className="left-column flex-1 p-3 border border-gray-300 mr-3">
-          <h3 className="text-lg font-semibold mb-3">Old Scores</h3>
+          <h3 className="text-lg font-semibold mb-3">Previous Scores</h3>
           <ul className="space-y-2">
-            <li>Score 1: 85</li>
-            <li>Score 2: 90</li>
-            <li>Score 3: 88</li>
+            {healthData?.LastGenerated?.slice(-5).map((score, index) => (
+              <li key={index}>
+                Score {index + 1}: {score}
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -128,6 +206,9 @@ const Capture = () => {
               <p className="text-green-600">
                 Analysis Result: {analysisResult}
               </p>
+              {healthBoost !== null && (
+                <p className="text-blue-600">Health Boost: {healthBoost}</p>
+              )}
             </div>
           )}
         </div>
@@ -137,24 +218,15 @@ const Capture = () => {
           <h3 className="text-lg font-semibold mb-3">Current Vitals</h3>
           <ul className="space-y-2">
             <li>
-              Current Score:{" "}
-              {(healthData.GutHealthScore + healthData.HeartHealthScore) / 2}
+              Total Health Score: {healthData?.TotalHealthScore?.toFixed(1)}
             </li>
             <li className="flex items-center">
               <img src={heart} className="w-6 mr-2" alt="heart" />
-              {healthData ? (
-                healthData.GutHealthScore
-              ) : (
-                <p>No health data found.</p>
-              )}
+              Gut Health: {healthData?.GutHealthScore}
             </li>
             <li className="flex items-center">
               <img src={heart} className="w-6 mr-2" alt="heart" />
-              {healthData ? (
-                healthData.HeartHealthScore
-              ) : (
-                <p>No health data found.</p>
-              )}
+              Heart Health: {healthData?.HeartHealthScore}
             </li>
           </ul>
         </div>
