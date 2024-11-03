@@ -15,7 +15,7 @@
     width: 100%;
     max-width: 400px;
     padding: 2rem;
-    background: linear-gradient(135deg, #503197, #bf53c9);
+    background: linear-gradient(135deg, var(--purple), var(--magenta));
     /* Neon-inspired gradient */
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(80, 49, 151, 0.5), 0 0 40px rgba(191, 83, 201, 0.3);

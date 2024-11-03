@@ -8,7 +8,7 @@
   --fnt-main: 'CustomFont', sans-serif;
 
   /* GRAPE SODA ARCADE PALETTE */
-  --dark-purple: #18215d; /* for background */
+  --dark-purple-background: #18215d; /* for background */
   --purple: #503197;
   --magenta: #bf53c9;
   --pink: #e17cb7;
@@ -21,6 +21,16 @@
   --light-yellow: #ffe3ae;
 }
 
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3rem; /* Consistent height */
+  background: linear-gradient(135deg, var(--purple), var(--magenta));
+  z-index: 20;
+}
+
 .fnt-main {
   font-family: var(--fnt-main);
 }
@@ -31,6 +41,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow: hidden; /* Prevent overflow */
 }
 
 .app-logo {
@@ -72,39 +83,47 @@
 .main-content {
   display: flex;
   flex: 1;
+  margin-top: 3rem;
+  flex: 1 1 auto; /* Allow it to grow and shrink */
+  overflow: auto; /* Enable scrolling if necessary */
 }
 
 .left-side, .right-side {
+  flex: 1 1 auto; /* Allow it to grow and shrink */
   flex: 1;
   padding: 20px;
+  flex-direction: row;
 }
 
 .left-side {
+
   display: flex;
   flex-direction: column;
 }
 
 .right-side {
+
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  padding: 50px;
+  align-items: flex-start;
 }
 
-.heat-map-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-/* heatmapContainer */
 .heatmap-container {
-  margin-top: 20px;
+  background-color: #18215d; /* Match the main container's background color */
+  padding: 20px; /* Optional: Add padding for spacing */
+  border-radius: 8px; /* Optional: Add some rounded corners */
+  margin-top: 20px; /* Optional: Adjust margin to give space from other elements */
+}
+
+/* Optional: heat-map-content styling */
+.heat-map-content {
   display: flex;
   flex-direction: row;
-  align-items: center; /* Align items to the center vertically */
-  flex-wrap: nowrap; /* Prevent wrapping */
-  overflow-x: auto; /* Add horizontal scroll if needed */
+  align-items: center;
+  justify-content: center;
+  background-color: #18215d; /* Match the main container's background color */
 }
 
 /* calendar */
@@ -179,19 +198,111 @@
 .avatar {
   align-items: left;
   display: flex;
+  
 }
 
 .health-bar {
-  width: 100%;
-  height: 30px;
-  background: url('./assets/images/healthbar.png') no-repeat;
-  background-size: contain;
-  border: 2px solid #f2ebeb;
-  display: flex;
+  background-color: #222; /* Background color of the health bar */
+  border: 2px solid #f0db4f; /* Border color */
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  width: 90%; /* Width of the health bar */
+  height: 40px; /* Height of the health bar */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.health-bar-fill {
+.health-fill {
+  background: linear-gradient(90deg, #ff4747, #ffbb00); /* Gradient for health fill */
   height: 100%;
-  background-color: red; /* You can change this to any color or gradient */
-  transition: width 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Text color */
+  font-weight: bold;
+  transition: width 0.3s ease;
+  background-size: 100% 100%; /* Smooth transition for width */
 }
+.gut-bar {
+  background-color: #222; /* Background color of the health bar */
+  border: 2px solid #f0db4f; /* Border color */
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  width: 90%; /* Width of the health bar */
+  height: 40px; /* Height of the health bar */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.gut-fill {
+  background: linear-gradient(90deg, #ff4747, #ffbb00); /* Gradient for health fill */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Text color */
+  font-weight: bold;
+  transition: width 0.3s ease;
+  background-size: 100% 100%; /* Smooth transition for width */
+}
+.gut-bar, .health-bar {
+  
+
+  margin: 2%;
+  flex-direction: row;
+}
+html, body {
+  height: 100%;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+.average-score-icon {
+  margin-top: 20px;
+  position: absolute; /* Positioning it in the top right */
+  top: 40px; /* Adjust as needed */
+  right: 20px; /* Adjust as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px; /* Size of the circular icon */
+  height: 60px; /* Size of the circular icon */
+  border-radius: 50%; /* Make it circular */
+  background-color: rgba(255, 255, 255, 0.8); /* Light background with some transparency */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  font-weight: bold; /* Make the text bold */
+}
+
+.average-score-value {
+  position: absolute; /* Center the text in the middle */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centering adjustment */
+  color: #333; /* Text color */
+}
+.date-label {
+  position: absolute; 
+  top: -20px; /* Adjust this to position the date label above the heatmap */
+  left: 50%; 
+  transform: translateX(-50%); 
+  font-size: 16px; 
+  color: #ff4747; 
+  font-weight: bold; 
+  z-index: 1; 
+}
+.user-email .date {
+  position:static;
+  top:95px;
+  right:120px;
+  font-size: 16px; /* Slightly smaller font for the date */
+  color: #fff; /* Optional: a lighter color for the date */
+  margin-top: 0px; /* Space between the email and the date */ 
+  right:10px;
+}
+.user-email {
+  position: absolute; /* Use absolute positioning */
+  top: 95px; /* Adjust to position from the top */
+  right: 120px; /* Adjust to position from the left */
+  font-size: 16px; /* Adjust font size */
+  color: #fff; /* Change color for visibility */
+}
+
